@@ -1,11 +1,17 @@
+import User from '../schemas/User';
+
 class ScoreController {
   async store(req, res) {
-    const { userId, score } = req.queryParams;
+    const { userId } = req.params;
 
-    // const user = User.find(userId);
-    // const newUser = {...user , score: score + user.score};
+    const user = await User.findById(userId);
 
-    //
+    const userScore = { ...user, score: user.score + req.body.score };
 
+    await User.updateOne({ _id: userId }, { score: userScore.score });
+
+    return res.json({ ...userScore._doc, score: userScore.score });
   }
 }
+
+export default new ScoreController();
