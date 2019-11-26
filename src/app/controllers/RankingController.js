@@ -1,6 +1,10 @@
 class RankingController {
   async index(req, res) {
-    return res.status(200).json([{ranking: 1}]);
+    return res.status(200).json([{
+      id: 1,
+      nome: 'Jordan',
+      score: 125,
+    }]);
   }
 }
 
