@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+import mongoose from 'mongoose';
 import Youch from 'youch';
 import express from 'express';
 import 'express-async-errors';
@@ -13,6 +14,8 @@ import routes from './routes';
 class App {
   constructor() {
     this.server = express();
+
+    mongoose.connect(process.env.MONGO_HOST, { useNewUrlParser: true });
 
     this.middlewares();
     this.routes();
