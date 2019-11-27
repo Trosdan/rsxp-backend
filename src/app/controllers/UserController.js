@@ -2,8 +2,15 @@ import User from '../schemas/User';
 
 class UserController {
   async store(req, res) {
-    const user = await User.create({ name: req.body.name });
-    return res.json(user);
+    const user = await User.findOne({ name: req.body.name });
+
+    if (user !== null) {
+      return res.status(400).json('User alredy exists.');
+    }
+
+    const newUser = await User.create({ name: req.body.name });
+
+    return res.json(newUser);
   }
 
   async index(req, res) {
