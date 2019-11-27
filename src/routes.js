@@ -11,6 +11,8 @@ routes.get('/', (req, res) => res.json({ message: 'Welcome to Omni CLI' }));
 routes.get('/ranking', RankingController.index);
 
 routes.post('/user', UserController.store);
+routes.get('/user', UserController.index);
+routes.get('/user/:id', UserController.show);
 
 routes.post('/score/:userId', ScoreController.store);
 
